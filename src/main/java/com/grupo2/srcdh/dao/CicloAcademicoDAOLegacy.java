@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  *
  * @author carlos
  */
-public class CicloAcademicoDAO {
+public class CicloAcademicoDAOLegacy {
     
     private Session sesion; 
     private Transaction tx;  

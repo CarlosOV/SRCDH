@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author carlos
  */
-public interface GenericDao<Entity, PK extends Serializable> {
+public interface GenericDAO<Entity, PK extends Serializable> {
     void Guardar(Entity t) throws UnableToSaveException;
     void Actualizar(Entity t) throws UnableToSaveException;
     Entity Buscar(PK id);

@@ -15,7 +15,7 @@ import org.hibernate.Session;
  *
  * @author carlos
  */
-public class GenericDaoImpl<Entity, K extends Serializable> implements GenericDao<Entity, K> {
+public class GenericDAOImpl<Entity, K extends Serializable> implements GenericDAO<Entity, K> {
 
  public Class<Entity> domainClass = getDomainClass();
  private Session session;

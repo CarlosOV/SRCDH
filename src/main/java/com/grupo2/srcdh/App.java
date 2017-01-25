@@ -9,7 +9,7 @@ import static spark.Spark.*;
 
 import com.grupo2.srcdh.controller.UsuarioController;
 import com.grupo2.srcdh.model.CicloAcademico;
-import com.grupo2.srcdh.dao.CicloAcademicoDAO;
+import com.grupo2.srcdh.dao.CicloAcademicoDAOLegacy;
 import com.grupo2.srcdh.service.UsuarioService;
 
 /**
@@ -19,7 +19,7 @@ import com.grupo2.srcdh.service.UsuarioService;
 public class App {
     public static void main(String[] args){
         
-        CicloAcademicoDAO cicloAcademicoDAO = new CicloAcademicoDAO();
+        CicloAcademicoDAOLegacy cicloAcademicoDAO = new CicloAcademicoDAOLegacy();
         CicloAcademico cicloAcademicoRecuperado = null;
         long idAEliminar = 0;
         
