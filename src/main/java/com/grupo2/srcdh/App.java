@@ -8,8 +8,9 @@ package com.grupo2.srcdh;
 import static spark.Spark.*;
 
 import com.grupo2.srcdh.controller.UsuarioController;
+import com.grupo2.srcdh.dao.Impl.CicloAcademicoDAOImpl;
+import com.grupo2.srcdh.exception.UnableToSaveException;
 import com.grupo2.srcdh.model.CicloAcademico;
-import com.grupo2.srcdh.dao.CicloAcademicoDAOLegacy;
 import com.grupo2.srcdh.service.UsuarioService;
 
 /**
@@ -17,9 +18,9 @@ import com.grupo2.srcdh.service.UsuarioService;
  * @author carlos
  */
 public class App {
-    public static void main(String[] args){
+    public static void main(String[] args) throws UnableToSaveException{
         
-        CicloAcademicoDAOLegacy cicloAcademicoDAO = new CicloAcademicoDAOLegacy();
+        CicloAcademicoDAOImpl cicloAcademicoDao = new CicloAcademicoDAOImpl();
         CicloAcademico cicloAcademicoRecuperado = null;
         long idAEliminar = 0;
         
@@ -29,12 +30,12 @@ public class App {
         
         System.out.println("Object: "+cicloAcademico1);
         
-        idAEliminar = cicloAcademicoDAO.guardaCicloAcademico(cicloAcademico1);
-        cicloAcademicoDAO.guardaCicloAcademico(cicloAcademico2);
-        cicloAcademicoDAO.guardaCicloAcademico(cicloAcademico3);
+        /*idAEliminar = cicloAcademicoDao.Guardar(cicloAcademico1);*/
+        cicloAcademicoDao.Guardar(cicloAcademico2);
+        cicloAcademicoDao.Guardar(cicloAcademico3);
         
-        cicloAcademicoRecuperado = cicloAcademicoDAO.obtenCicloAcademico(idAEliminar); 
-        System.out.println("Recuperamos a " + cicloAcademicoRecuperado.getNombre()); 
+        /*cicloAcademicoRecuperado = cicloAcademicoDao.Buscar(idAEliminar); 
+        System.out.println("Recuperamos a " + cicloAcademicoRecuperado.getNombre()); */
        
         new UsuarioController(new UsuarioService());
         get("/hello2", (req, res) -> "Hola wii :D");

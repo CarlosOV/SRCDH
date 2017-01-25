@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Table(name="token")
 public class Token implements Serializable {
     @Id @GeneratedValue
-    @Column(name="id")
+    @Column(name="idToken")
     private long id;
     
     @Column(name="token")

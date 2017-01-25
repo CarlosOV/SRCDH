@@ -16,15 +16,15 @@
         <property name="show_sql">false</property>
         <property name="format_sql">false</property>
  
-        <mapping class="com.grupo2.srcdh.models.CicloAcademico"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.Curso"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.CursoAbierto"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.DisponibilidadHoraria"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.EscuelaAcademica"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.Horario"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.Token"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.Usuario"></mapping> 
-        <mapping class="com.grupo2.srcdh.models.UsuarioCategoria"></mapping>
+        <mapping class="com.grupo2.srcdh.model.CicloAcademico"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.Curso"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.CursoAbierto"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.DisponibilidadHoraria"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.EscuelaAcademica"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.Horario"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.Token"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.Usuario"></mapping> 
+        <mapping class="com.grupo2.srcdh.model.UsuarioCategoria"></mapping>
  
  
     </session-factory>

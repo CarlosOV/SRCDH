@@ -6,6 +6,7 @@
 package com.grupo2.srcdh.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 @Table(name="ciclo_academico")
 public class CicloAcademico implements Serializable {
     @Id @GeneratedValue
-    @Column(name="id")
+    @Column(name="idCicloAcademico")
     private long id;
     
     @Column(name="nombre")

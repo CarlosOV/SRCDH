@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class DisponibilidadHoraria implements Serializable {
 
     @Id @GeneratedValue
-    @Column(name="id")
+    @Column(name="idDisponibilidadHoraria")
     private long id;
     
     @Column(name="dia")
