@@ -6,7 +6,11 @@
 package com.grupo2.srcdh.controller;
 
 import com.google.gson.Gson;
+import com.grupo2.srcdh.model.Docente;
+import com.grupo2.srcdh.model.Token;
 import com.grupo2.srcdh.model.Usuario;
+import com.grupo2.srcdh.service.DocenteService;
+import com.grupo2.srcdh.service.TokenService;
 import static spark.Spark.*;
 
 import com.grupo2.srcdh.service.UsuarioService;
@@ -21,15 +25,15 @@ import java.util.Map;
  */
 public class UsuarioController {
  
-    public UsuarioController(final UsuarioService userService){
+    public UsuarioController(final UsuarioService usuarioService, final TokenService tokenService){
     
-        post("/api/login", (req, res) -> userService.login(req, res), json());
+        post("/api/login", (req, res) -> usuarioService.login(req, res), json());
         
         post("/api/register", (req, res) -> {
             Map<String, String> map = JsonUtil.parse(req.body());
             String usuario = map.get("user");
             String pass = map.get("pass");
-            Usuario us = userService.createUser(usuario, pass);
+            Usuario us = usuarioService.createUser(usuario, pass);
             Gson gson = new Gson();
             String salida = "{\"usuario\":\""+us.getEmail()+"\"}";
             halt(200, salida);
@@ -46,6 +50,27 @@ public class UsuarioController {
             return salida;
         }, json());
         
+        get("/api/user", (req, res) -> {
+            String token = req.headers("token");
+            Token tokenObj = tokenService.getByToken(token); 
+            Usuario user = tokenObj.getUsuario();
+            Docente docente = user.getDocente();
+
+            String salida = "{\"status\":\"200\""
+                    + ",\"email\":\""+ user.getEmail() +"\"";
+            if(docente != null){
+                salida += ",\"nombre\":\""+ docente.getNombre() +"\""
+                    + ",\"apellido\":\""+ docente.getApellido() +"\""
+                    + ",\"dni\":\""+ docente.getDni() +"\""
+                    + ",\"categoria\":\""+ docente.getCategoria().getNombre() +"\"";
+            }
+                            
+                    salida+= "}";
+                  
+            System.out.println("salida: "+ salida);
+            halt(200, salida);
+            return null;
+        }, json());
     }
     
 }

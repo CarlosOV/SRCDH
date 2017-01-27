@@ -5,6 +5,8 @@
  */
 package com.grupo2.srcdh.service;
 
+import com.grupo2.srcdh.dao.Impl.TokenDAOImpl;
+import com.grupo2.srcdh.model.Token;
 import java.util.UUID;
 
 /**
@@ -13,9 +15,15 @@ import java.util.UUID;
  */
 public class TokenService {
     
+    private final TokenDAOImpl tokenDAO = new TokenDAOImpl();
+    
     public static String GenerateIdentifyToken(){
         String identifyToken = UUID.randomUUID().toString();
         return identifyToken;
+    }
+    
+    public Token getByToken(String token){
+        return tokenDAO.BuscarPorToken(token);
     }
     
 }
