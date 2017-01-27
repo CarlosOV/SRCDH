@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import com.grupo2.srcdh.model.Docente;
 import com.grupo2.srcdh.model.Token;
 import com.grupo2.srcdh.model.Usuario;
-import com.grupo2.srcdh.service.DocenteService;
 import com.grupo2.srcdh.service.TokenService;
 import static spark.Spark.*;
 

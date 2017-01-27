@@ -6,7 +6,7 @@
 package com.grupo2.srcdh.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,12 +37,17 @@ public class DocenteCicloAcademico implements Serializable {
     private Docente docente;
     
     @OneToMany(mappedBy = "docenteCicloAcademico")
-    private Set<DCaCurso> dCaCurso;
+    private List<DCaCurso> dCaCurso;
     
     @OneToMany(mappedBy = "docenteCicloAcademico")
-    private Set<DisponibilidadHoraria> disponibilidadHoraria;
+    private List<DisponibilidadHoraria> disponibilidadHoraria;
 
     public DocenteCicloAcademico() {
+    }
+
+    public DocenteCicloAcademico(CicloAcademico cicloAcademico, Docente docente) {
+        this.cicloAcademico = cicloAcademico;
+        this.docente = docente;
     }
 
     public long getId() {
@@ -69,19 +74,19 @@ public class DocenteCicloAcademico implements Serializable {
         this.docente = docente;
     }
 
-    public Set<DCaCurso> getdCaCurso() {
+    public List<DCaCurso> getdCaCurso() {
         return dCaCurso;
     }
 
-    public void setdCaCurso(Set<DCaCurso> dCaCurso) {
+    public void setdCaCurso(List<DCaCurso> dCaCurso) {
         this.dCaCurso = dCaCurso;
     }
 
-    public Set<DisponibilidadHoraria> getDisponibilidadHoraria() {
+    public List<DisponibilidadHoraria> getDisponibilidadHoraria() {
         return disponibilidadHoraria;
     }
 
-    public void setDisponibilidadHoraria(Set<DisponibilidadHoraria> disponibilidadHoraria) {
+    public void setDisponibilidadHoraria(List<DisponibilidadHoraria> disponibilidadHoraria) {
         this.disponibilidadHoraria = disponibilidadHoraria;
     }
 }
