@@ -18,32 +18,39 @@ import javax.persistence.Table;
  *
  * @author carlos
  */
-
 @Entity
-@Table(name="usuario_categoria")
-public class UsuarioCategoria implements Serializable {
+@Table(name="categoria")
+public class Categoria implements Serializable {
     @Id @GeneratedValue
-    @Column(name="idUsuarioCategoria")
+    @Column(name="idCategoria")
     private long id;
     
     @Column(name="nombre")
     private String nombre;
-    
-    @OneToMany(mappedBy = "usuarioCategoria")
-    private Set<Usuario> usuarios;
 
-    public UsuarioCategoria(String nombre) {
+    @OneToMany(mappedBy = "categoria")
+    private Set<Docente> docentes;
+
+    public Categoria() {
+    }
+
+    public Categoria(String nombre) {
         this.nombre = nombre;
     }
-
-    public UsuarioCategoria() {
+    
+    public Set<Docente> getDocentes() {
+        return docentes;
     }
 
+    public void setDocentes(Set<Docente> docentes) {
+        this.docentes = docentes;
+    }
+    
     public long getId() {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,5 +61,4 @@ public class UsuarioCategoria implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 }

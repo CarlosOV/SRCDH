@@ -14,46 +14,51 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  *
  * @author carlos
  */
 @Entity
-@Table(name="curso_abierto")
-public class CursoAbierto implements Serializable {
-    @Id @GeneratedValue
-    @Column(name="idCursoAbierto")
-    private long id;
+@Table(name="docente_ciclo_academico_curso")
+public class DCaCurso implements Serializable {
     
-    @ManyToOne
-    @JoinColumn(name="idCicloAcademico")
-    private CicloAcademico cicloAcademico;
+    @Id @GeneratedValue
+    @Column(name="idDCaCurso")
+    private long id;
+
+    public DCaCurso() {
+    }
     
     @ManyToOne
     @JoinColumn(name="idCurso")
     private Curso curso;
-    
-    @ManyToOne
-    @JoinColumn(name="idEscuelaAcademica")
-    private EscuelaAcademica escuelaAcademica;
-  
-    @ManyToOne
-    @JoinColumn(name="idHorario")
-    private Horario horario;
-    
-    @ManyToOne
-    @JoinColumn(name="idUsuario")
-    private Usuario usuario;
 
-    public CursoAbierto() {
-    }
+    @ManyToOne
+    @JoinColumn(name="idDocenteCicloAcademico")
+    private DocenteCicloAcademico docenteCicloAcademico;
 
     public long getId() {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public DocenteCicloAcademico getDocenteCicloAcademico() {
+        return docenteCicloAcademico;
+    }
+
+    public void setDocenteCicloAcademico(DocenteCicloAcademico docenteCicloAcademico) {
+        this.docenteCicloAcademico = docenteCicloAcademico;
+    }
+    
 }

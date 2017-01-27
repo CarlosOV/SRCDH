@@ -6,9 +6,7 @@
 package com.grupo2.srcdh.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,12 +29,19 @@ public class CicloAcademico implements Serializable {
     @Column(name="nombre")
     private String nombre;
     
-    @OneToMany(mappedBy = "cicloAcademico", cascade= CascadeType.ALL)
-    private Set<CursoAbierto> cursosAbiertos;
-
+    @OneToMany(mappedBy = "cicloAcademico")
+    private Set<DocenteCicloAcademico> docenteCicloAcademico;
 
     public CicloAcademico(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Set<DocenteCicloAcademico> getDocenteCicloAcademico() {
+        return docenteCicloAcademico;
+    }
+
+    public void setDocenteCicloAcademico(Set<DocenteCicloAcademico> docenteCicloAcademico) {
+        this.docenteCicloAcademico = docenteCicloAcademico;
     }
 
     public CicloAcademico() {

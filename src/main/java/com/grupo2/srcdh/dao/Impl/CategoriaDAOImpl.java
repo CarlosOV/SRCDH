@@ -5,15 +5,16 @@
  */
 package com.grupo2.srcdh.dao.Impl;
 
-import com.grupo2.srcdh.dao.ICursoDAO;
+import com.grupo2.srcdh.dao.ICategoriaDAO;
 import com.grupo2.srcdh.generic.GenericDAOImpl;
-import com.grupo2.srcdh.model.Curso;
+import com.grupo2.srcdh.model.Categoria;
+
 
 /**
  *
  * @author carlos
  */
-public class CursoAbiertoDAOImpl extends GenericDAOImpl<Curso, Long> implements ICursoDAO {
+public class CategoriaDAOImpl extends GenericDAOImpl<Categoria, Long> implements ICategoriaDAO {
     
-}  
+    }  
 

@@ -14,4 +14,6 @@ import com.grupo2.srcdh.model.Usuario;
  */
 public interface IUsuarioDAO extends GenericDAO<Usuario, Long>  {
 
+    public Usuario BuscarPorEmail(String email);
+    
 }

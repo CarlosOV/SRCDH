@@ -7,11 +7,12 @@ package com.grupo2.srcdh.model;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,8 +30,28 @@ public class Curso implements Serializable {
     @Column(name="nombre")
     private String nombre;
     
-    @OneToMany(mappedBy = "curso", cascade= CascadeType.ALL)
-    private Set<CursoAbierto> cursosAbiertos;
+    @OneToMany(mappedBy = "curso")
+    private Set<DCaCurso> dCaCurso;
+    
+    @ManyToOne
+    @JoinColumn(name="idEscuelaAcademica")
+    private EscuelaAcademica escuelaAcademica;
+
+    public Set<DCaCurso> getdCaCurso() {
+        return dCaCurso;
+    }
+
+    public void setdCaCurso(Set<DCaCurso> dCaCurso) {
+        this.dCaCurso = dCaCurso;
+    }
+
+    public EscuelaAcademica getEscuelaAcademica() {
+        return escuelaAcademica;
+    }
+
+    public void setEscuelaAcademica(EscuelaAcademica escuelaAcademica) {
+        this.escuelaAcademica = escuelaAcademica;
+    }
     
     public Curso(String nombre) {
         this.nombre = nombre;

@@ -6,12 +6,12 @@
 package com.grupo2.srcdh.dao;
 
 import com.grupo2.srcdh.generic.GenericDAO;
-import com.grupo2.srcdh.model.Horario;
+import com.grupo2.srcdh.model.DocenteCicloAcademico;
 
 /**
  *
  * @author carlos
  */
-public interface IHorarioDAO extends GenericDAO<Horario, Long>  {
+public interface IDocenteCicloAcademicoDAO extends GenericDAO<DocenteCicloAcademico, Long>  {
 
 }

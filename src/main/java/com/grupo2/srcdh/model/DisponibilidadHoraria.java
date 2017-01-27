@@ -39,6 +39,10 @@ public class DisponibilidadHoraria implements Serializable {
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private Usuario usuario;
+    
+    @ManyToOne
+    @JoinColumn(name="idDocenteCicloAcademico")
+    private DocenteCicloAcademico docenteCicloAcademico;
 
     public DisponibilidadHoraria(String dia, String inicioHora, String finHora) {
         this.dia = dia;
@@ -47,6 +51,22 @@ public class DisponibilidadHoraria implements Serializable {
     }
 
     public DisponibilidadHoraria() {
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public DocenteCicloAcademico getDocenteCicloAcademico() {
+        return docenteCicloAcademico;
+    }
+
+    public void setDocenteCicloAcademico(DocenteCicloAcademico docenteCicloAcademico) {
+        this.docenteCicloAcademico = docenteCicloAcademico;
     }
     
     public long getId() {

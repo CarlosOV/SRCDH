@@ -53,13 +53,15 @@ public class GenericDAOImpl<Entity, K extends Serializable> implements GenericDA
  }
   
  @Override
- public void Guardar(Entity t) throws UnableToSaveException {
+ public Long Guardar(Entity t) throws UnableToSaveException {
+   long id = 0;
    try {
-    getHibernateTemplate().save(t);
+    id = (Long)getHibernateTemplate().save(t);
     session.getTransaction().commit();
    } catch (HibernateException e) {
     throw new UnableToSaveException(e);
    }
+   return id;
  }
  @Override
  public void Eliminar(Entity t) {

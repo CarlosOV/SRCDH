@@ -30,7 +30,15 @@ public class EscuelaAcademica implements Serializable{
     private String nombre;
     
     @OneToMany(mappedBy = "escuelaAcademica")
-    private Set<CursoAbierto> cursosAbiertos;
+    private Set<Curso> curso;
+
+    public Set<Curso> getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Set<Curso> curso) {
+        this.curso = curso;
+    }
 
     public EscuelaAcademica(String nombre) {
         this.nombre = nombre;

@@ -6,15 +6,12 @@
 package com.grupo2.srcdh.dao;
 
 import com.grupo2.srcdh.generic.GenericDAO;
-import com.grupo2.srcdh.model.Token;
+import com.grupo2.srcdh.model.Docente;
 
 /**
  *
  * @author carlos
  */
-public interface ITokenDAO extends GenericDAO<Token, Long>  {
+public interface IDocenteDAO extends GenericDAO<Docente, Long>  {
 
-    public Token BuscarPorToken(String token);
-    public Token getLastToken(long id);
-    
 }

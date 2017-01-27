@@ -6,12 +6,12 @@
 package com.grupo2.srcdh.dao;
 
 import com.grupo2.srcdh.generic.GenericDAO;
-import com.grupo2.srcdh.model.UsuarioCategoria;
+import com.grupo2.srcdh.model.DCaCurso;
 
 /**
  *
  * @author carlos
  */
-public interface IUsuarioCategoriaDAO extends GenericDAO<UsuarioCategoria, Long>  {
+public interface IDCaCursoDAO extends GenericDAO<DCaCurso, Long>  {
 
 }

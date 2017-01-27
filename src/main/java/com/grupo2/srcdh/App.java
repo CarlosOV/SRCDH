@@ -5,6 +5,7 @@
  */
 package com.grupo2.srcdh;
 
+import com.grupo2.srcdh.controller.InterceptorController;
 import static spark.Spark.*;
 
 import com.grupo2.srcdh.controller.UsuarioController;
@@ -37,6 +38,7 @@ public class App {
         /*cicloAcademicoRecuperado = cicloAcademicoDao.Buscar(idAEliminar); 
         System.out.println("Recuperamos a " + cicloAcademicoRecuperado.getNombre()); */
        
+        new InterceptorController();
         new UsuarioController(new UsuarioService());
         get("/hello2", (req, res) -> "Hola wii :D");
     }

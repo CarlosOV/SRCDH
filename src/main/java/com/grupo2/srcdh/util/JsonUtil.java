@@ -6,6 +6,7 @@
 package com.grupo2.srcdh.util;
 
 import com.google.gson.Gson;
+import java.util.Map;
 import spark.ResponseTransformer;
 
 /**
@@ -13,12 +14,17 @@ import spark.ResponseTransformer;
  * @author carlos
  */
 public class JsonUtil {
+
     
     public static String toJson(Object object) {
         return new Gson().toJson(object);
     }
  
-  public static ResponseTransformer json() {
-    return JsonUtil::toJson;
-  }
+    public static ResponseTransformer json() {
+      return JsonUtil::toJson;
+    }
+  
+    public static Map<String, String> parse(String object) {
+      return new Gson().fromJson(object, Map.class);
+    }
 }
