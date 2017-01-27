@@ -7,6 +7,7 @@ package com.grupo2.srcdh.dao;
 
 import com.grupo2.srcdh.generic.GenericDAO;
 import com.grupo2.srcdh.model.Curso;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,6 @@ import com.grupo2.srcdh.model.Curso;
  */
 public interface ICursoDAO extends GenericDAO<Curso, Long>  {
 
+    public List<Curso> Listar();
+    
 }

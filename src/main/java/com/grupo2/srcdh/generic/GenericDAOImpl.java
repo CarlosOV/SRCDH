@@ -6,10 +6,14 @@
 package com.grupo2.srcdh.generic;
 
 import com.grupo2.srcdh.exception.UnableToSaveException;
+import com.grupo2.srcdh.util.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -68,5 +72,23 @@ public class GenericDAOImpl<Entity, K extends Serializable> implements GenericDA
    getHibernateTemplate().delete(t);
    session.getTransaction().commit();
  }
+
+    @Override
+    public List<Entity> Listar() {
+        List<Entity> users = new ArrayList<Entity>();
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            System.out.println("this.getDomainClass(): "+ this.getDomainClass().getSimpleName());
+            users = session.createQuery("from "+this.getDomainClass().getSimpleName()+"").list();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return users;
+    }
  
 }

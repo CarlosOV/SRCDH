@@ -19,7 +19,10 @@ public class CursoService {
     private final CursoDAOImpl cursoDAO = new CursoDAOImpl();
     
     public List<Curso> getAllCurso(){
-        return null;
+        System.out.println("Inicio");
+        System.out.println("cursos"+cursoDAO.Listar());
+        System.out.println("Fin");
+        return cursoDAO.Listar();
     }
     
     public Curso getCurso(long id){

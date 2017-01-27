@@ -5,13 +5,14 @@
  */
 package com.grupo2.srcdh;
 
+import com.grupo2.srcdh.controller.CursoController;
 import com.grupo2.srcdh.controller.InterceptorController;
-import static spark.Spark.*;
 
 import com.grupo2.srcdh.controller.UsuarioController;
-import com.grupo2.srcdh.dao.Impl.CicloAcademicoDAOImpl;
+import com.grupo2.srcdh.dao.Impl.CursoDAOImpl;
 import com.grupo2.srcdh.exception.UnableToSaveException;
-import com.grupo2.srcdh.model.CicloAcademico;
+import com.grupo2.srcdh.model.Curso;
+import com.grupo2.srcdh.service.CursoService;
 import com.grupo2.srcdh.service.UsuarioService;
 
 /**
@@ -21,25 +22,13 @@ import com.grupo2.srcdh.service.UsuarioService;
 public class App {
     public static void main(String[] args) throws UnableToSaveException{
         
-        CicloAcademicoDAOImpl cicloAcademicoDao = new CicloAcademicoDAOImpl();
-        CicloAcademico cicloAcademicoRecuperado = null;
-        long idAEliminar = 0;
+        CursoDAOImpl cursoDAO = new CursoDAOImpl();
+        cursoDAO.Guardar(new Curso("Curso A"));
+        cursoDAO.Guardar(new Curso("Curso B"));
+        cursoDAO.Guardar(new Curso("Curso C"));
         
-        CicloAcademico cicloAcademico1 = new CicloAcademico("Primer Ciclo");
-        CicloAcademico cicloAcademico2 = new CicloAcademico("Segundo Ciclo");
-        CicloAcademico cicloAcademico3 = new CicloAcademico("Tercer Ciclo");
-        
-        System.out.println("Object: "+cicloAcademico1);
-        
-        /*idAEliminar = cicloAcademicoDao.Guardar(cicloAcademico1);*/
-        cicloAcademicoDao.Guardar(cicloAcademico2);
-        cicloAcademicoDao.Guardar(cicloAcademico3);
-        
-        /*cicloAcademicoRecuperado = cicloAcademicoDao.Buscar(idAEliminar); 
-        System.out.println("Recuperamos a " + cicloAcademicoRecuperado.getNombre()); */
-       
         new InterceptorController();
         new UsuarioController(new UsuarioService());
-        get("/hello2", (req, res) -> "Hola wii :D");
+        new CursoController(new CursoService());
     }
 }

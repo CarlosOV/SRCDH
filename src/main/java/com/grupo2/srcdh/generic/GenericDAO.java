@@ -7,6 +7,7 @@ package com.grupo2.srcdh.generic;
 
 import com.grupo2.srcdh.exception.UnableToSaveException;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -17,4 +18,5 @@ public interface GenericDAO<Entity, PK extends Serializable> {
     void Actualizar(Entity t) throws UnableToSaveException;
     Entity Buscar(PK id);
     void Eliminar(Entity t);
+    List<Entity> Listar();
 }

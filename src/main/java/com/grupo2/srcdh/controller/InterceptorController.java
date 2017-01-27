@@ -31,7 +31,7 @@ public class InterceptorController {
  
                 if (tokenDevuelto != null) {
                     Token tokenAux = tokenDao.getLastToken(tokenDevuelto.getUsuario().getId());
-                    if (tokenDevuelto.equals(tokenAux) && tokenDevuelto.isActivo()) {
+                    if (tokenDevuelto.getToken().equals(tokenAux.getToken()) && tokenDevuelto.isActivo()) {
                         authenticated = true;
                     }
                 }

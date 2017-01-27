@@ -6,7 +6,7 @@
 package com.grupo2.srcdh.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class Usuario implements Serializable {
     private String contrasenha;
     
     @OneToMany(mappedBy = "usuario")
-    private Set<Token> tokens;
+    private List<Token> tokens;
     
     @OneToOne(mappedBy = "usuario")
     private Docente docente;
@@ -46,11 +46,11 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Set<Token> getTokens() {
+    public List<Token> getTokens() {
         return tokens;
     }
 
-    public void setTokens(Set<Token> tokens) {
+    public void setTokens(List<Token> tokens) {
         this.tokens = tokens;
     }
 

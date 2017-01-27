@@ -7,7 +7,6 @@ package com.grupo2.srcdh.dao.Impl;
 
 import com.grupo2.srcdh.dao.IUsuarioDAO;
 import com.grupo2.srcdh.generic.GenericDAOImpl;
-import com.grupo2.srcdh.model.Token;
 import com.grupo2.srcdh.model.Usuario;
 import com.grupo2.srcdh.util.HibernateUtil;
 import org.hibernate.Session;

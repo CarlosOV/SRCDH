@@ -49,24 +49,18 @@ public class TokenDAOImpl extends GenericDAOImpl<Token, Long> implements ITokenD
 
     @Override
     public Token getLastToken(long id) {
-    Transaction trns = null;
+        Transaction trns = null;
+        UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Token> tokens;
         Token tokenDevuelto = null;
         
         try{
             trns = session.beginTransaction();
-            try{
-               tokens = (List<Token>)session.createQuery("select td from Token td where td.idUsuario = :id")
-                       .setParameter("id", id).list();
-               if(tokens.size()>0){
-                   tokenDevuelto = tokens.get(tokens.size()-1);
-               }
+            tokens = (List<Token>)usuarioDAO.Buscar(id).getTokens();
+            if(tokens.size()>0){
+                tokenDevuelto = tokens.get(tokens.size()-1);
             }
-            catch(RuntimeException e){
-                e.printStackTrace();
-            }
-            
         }catch(RuntimeException e){
             e.printStackTrace();
         }finally{
