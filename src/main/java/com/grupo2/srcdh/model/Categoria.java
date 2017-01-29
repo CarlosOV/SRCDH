@@ -6,7 +6,7 @@
 package com.grupo2.srcdh.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +29,7 @@ public class Categoria implements Serializable {
     private String nombre;
 
     @OneToMany(mappedBy = "categoria")
-    private Set<Docente> docentes;
+    private List<Docente> docentes;
 
     public Categoria() {
     }
@@ -38,11 +38,11 @@ public class Categoria implements Serializable {
         this.nombre = nombre;
     }
     
-    public Set<Docente> getDocentes() {
+    public List<Docente> getDocentes() {
         return docentes;
     }
 
-    public void setDocentes(Set<Docente> docentes) {
+    public void setDocentes(List<Docente> docentes) {
         this.docentes = docentes;
     }
     

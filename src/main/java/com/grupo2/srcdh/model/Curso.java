@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,27 +31,27 @@ public class Curso implements Serializable {
     @Column(name="nombre")
     private String nombre;
     
-    @OneToMany(mappedBy = "curso")
-    private List<DCaCurso> dCaCurso;
-    
     @ManyToOne
     @JoinColumn(name="idEscuelaAcademica")
     private EscuelaAcademica escuelaAcademica;
-
-    public List<DCaCurso> getdCaCurso() {
-        return dCaCurso;
-    }
-
-    public void setdCaCurso(List<DCaCurso> dCaCurso) {
-        this.dCaCurso = dCaCurso;
-    }
-
+     
+    @ManyToMany(mappedBy = "cursos")
+    private List<Docente> docentes;
+    
     public EscuelaAcademica getEscuelaAcademica() {
         return escuelaAcademica;
     }
 
     public void setEscuelaAcademica(EscuelaAcademica escuelaAcademica) {
         this.escuelaAcademica = escuelaAcademica;
+    }
+
+    public List<Docente> getDocentes() {
+        return docentes;
+    }
+
+    public void setDocentes(List<Docente> docentes) {
+        this.docentes = docentes;
     }
     
     public Curso(String nombre) {

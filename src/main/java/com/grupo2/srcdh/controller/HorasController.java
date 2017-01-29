@@ -6,7 +6,6 @@
 package com.grupo2.srcdh.controller;
 
 import com.grupo2.srcdh.model.DisponibilidadHoraria;
-import com.grupo2.srcdh.model.DocenteCicloAcademico;
 import com.grupo2.srcdh.model.Token;
 import com.grupo2.srcdh.model.Usuario;
 import com.grupo2.srcdh.service.HorasService;
@@ -23,24 +22,16 @@ import static spark.Spark.halt;
 public class HorasController {
 
     public HorasController(final HorasService horasService, final TokenService tokenService) {
-        get("/api/ciclo/:idCiclo/horas", (req, res) -> {
-            long idCiclo = 0;
-            
-            try{
-                idCiclo = Long.parseLong(req.params(":idCiclo"));
-            }catch(NumberFormatException e){
-                System.out.println("NumberFormatException: " + e.getMessage());
-                halt(400, "{\"status\":\"400\",\"message\":\"Bad request\"}");
-            }
-            System.out.println("before");
+        get("/api/horas", (req, res) -> {
 
             Token token = tokenService.getByToken(req.headers("token"));
-            System.out.println("Token: "+token);
             Usuario user = token.getUsuario();
-            System.out.println("Usuario: "+user);
-            List<DisponibilidadHoraria> horarios = horasService.getHorasByCiclo(user, idCiclo);
+ 
+            List<DisponibilidadHoraria> horarios = horasService.getHoras(user);
+            
             System.out.println("Horarios: "+horarios);
             DisponibilidadHoraria horario = null;
+            
             String salida = "{\"status\":\"200\",\"data\":[";
             for(int i = 0 ; i < horarios.size() ; i++){
                 horario = horarios.get(i);
@@ -51,6 +42,7 @@ public class HorasController {
             }
             
             salida +="]}";
+            
             halt(200, salida);
             return null;
         }, json());

@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,33 +24,60 @@ import javax.persistence.Table;
  * @author carlos
  */
 @Entity
-@Table(name="docente")
+@Table(name = "docente")
 public class Docente implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "frn_usuario_id")
     private Usuario usuario;
 
-    @Id @GeneratedValue
-    @Column(name="idDocente")
+    @Id
+    @GeneratedValue
+    @Column(name = "idDocente")
     private long id;
-    
-    @Column(name="nombre")
+
+    @Column(name = "nombre")
     private String nombre;
-    
-        
-    @Column(name="apellido")
+
+    @Column(name = "apellido")
     private String apellido;
-    
-    @Column(name="dni")
+
+    @Column(name = "dni")
     private String dni;
 
     @ManyToOne
-    @JoinColumn(name="idCatgoria")
+    @JoinColumn(name = "idCategoria")
     private Categoria categoria;
-    
+
     @OneToMany(mappedBy = "docente")
-    private List<DocenteCicloAcademico> docenteCicloAcademico;
+    private List<DisponibilidadHoraria> disponibilidadHorarias;
+
+    @ManyToMany
+    private List<Curso> cursos;
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<DisponibilidadHoraria> getDisponibilidadHorarias() {
+        return disponibilidadHorarias;
+    }
+
+    public void setDisponibilidadHorarias(List<DisponibilidadHoraria> disponibilidadHorarias) {
+        this.disponibilidadHorarias = disponibilidadHorarias;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
 
     public Docente() {
     }
@@ -68,22 +96,6 @@ public class Docente implements Serializable {
         this.usuario = usuario;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public List<DocenteCicloAcademico> getDocenteCicloAcademico() {
-        return docenteCicloAcademico;
-    }
-
-    public void setDocenteCicloAcademico(List<DocenteCicloAcademico> docenteCicloAcademico) {
-        this.docenteCicloAcademico = docenteCicloAcademico;
-    }
-    
     public long getId() {
         return id;
     }

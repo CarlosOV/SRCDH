@@ -13,6 +13,7 @@ import com.grupo2.srcdh.controller.UsuarioController;
 import com.grupo2.srcdh.exception.UnableToSaveException;
 import com.grupo2.srcdh.service.CursoService;
 import com.grupo2.srcdh.service.DocenteService;
+import com.grupo2.srcdh.service.EscuelaService;
 import com.grupo2.srcdh.service.HorasService;
 import com.grupo2.srcdh.service.TokenService;
 import com.grupo2.srcdh.service.UsuarioService;
@@ -31,7 +32,7 @@ public class App {
                 
         new InterceptorController();
         new UsuarioController(new UsuarioService(), new TokenService());
-        new CursoController(new CursoService());
+        new CursoController(new CursoService(), new EscuelaService());
         new HorasController(new HorasService(), new TokenService());
     }
 }

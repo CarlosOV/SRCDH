@@ -13,16 +13,16 @@
         <property name="connection.password">pruebahibernate</property>
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
         <property name="format_sql">false</property>
  
         <mapping class="com.grupo2.srcdh.model.Categoria"></mapping> 
-        <mapping class="com.grupo2.srcdh.model.CicloAcademico"></mapping> 
+         <!--<mapping class="com.grupo2.srcdh.model.CicloAcademico"></mapping>--> 
         <mapping class="com.grupo2.srcdh.model.Curso"></mapping> 
-        <mapping class="com.grupo2.srcdh.model.DCaCurso"></mapping> 
+         <!--<mapping class="com.grupo2.srcdh.model.DCaCurso"></mapping>--> 
         <mapping class="com.grupo2.srcdh.model.DisponibilidadHoraria"></mapping> 
         <mapping class="com.grupo2.srcdh.model.Docente"></mapping> 
-        <mapping class="com.grupo2.srcdh.model.DocenteCicloAcademico"></mapping> 
+        <!--<mapping class="com.grupo2.srcdh.model.DocenteCicloAcademico"></mapping>--> 
         <mapping class="com.grupo2.srcdh.model.EscuelaAcademica"></mapping> 
         <mapping class="com.grupo2.srcdh.model.Token"></mapping> 
         <mapping class="com.grupo2.srcdh.model.Usuario"></mapping> 

@@ -7,10 +7,7 @@ package com.grupo2.srcdh.service;
 
 import com.grupo2.srcdh.dao.Impl.CursoDAOImpl;
 import com.grupo2.srcdh.model.Curso;
-import com.grupo2.srcdh.model.DCaCurso;
-import com.grupo2.srcdh.util.JsonUtil;
 import java.util.List;
-import java.util.Map;
 import static spark.Spark.halt;
 
 
@@ -47,21 +44,9 @@ public class CursoService {
         String salida = "{\"status\":\"200\",\"message\":\"Curso obtenido\","
                 + "\"id\":\""+ curso.getId() +"\""
                 + ",\"nombre\":\""+ curso.getNombre() +"\""
-                + ",\"escuelaAcademica\":\""+ curso.getEscuelaAcademica() +"\""
-                + ",\"dcacurso\":[";
-        
-        List<DCaCurso> dCaCursos = curso.getdCaCurso();
-        DCaCurso dCaCurso = null;
-        
-        for(int x=0;x<dCaCursos.size();x++) {
-            dCaCurso = dCaCursos.get(x);
-            salida += "{\"id\":\""+ dCaCurso.getId() +"\""
-                    + ",\"docenteCicloAcademico\":\""+ dCaCurso.getDocenteCicloAcademico() +"\""
-                    + ",\"curso\":\""+ dCaCurso.getCurso() +"\"}";
-            if(x<dCaCursos.size()-1)salida  += ",";
-          }
-        
-        salida += "]}";
+                + ",\"escuelaAcademica\":\""+ curso.getEscuelaAcademica() +"\"";
+
+        salida += "}";
         halt(200, salida);
         return curso;
     }
