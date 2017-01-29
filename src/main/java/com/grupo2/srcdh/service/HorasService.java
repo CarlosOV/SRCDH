@@ -5,6 +5,7 @@
  */
 package com.grupo2.srcdh.service;
 
+import com.grupo2.srcdh.dao.Impl.DocenteDAOImpl;
 import com.grupo2.srcdh.model.DisponibilidadHoraria;
 import com.grupo2.srcdh.model.Docente;
 import com.grupo2.srcdh.model.Usuario;
@@ -16,11 +17,14 @@ import java.util.List;
  */
 public class HorasService {
     
+    public DocenteDAOImpl docenteDAO = new DocenteDAOImpl();
+    
     public List<DisponibilidadHoraria> getHoras(Usuario user){
         
+        Docente docenteaux = null;
         Docente docente = user.getDocente();
-        System.out.println("docente: "+docente);
+        docenteaux = docenteDAO.Buscar(docente.getId());
 
-        return docente.getDisponibilidadHorarias();
+        return docenteaux.getDisponibilidadHorarias();
     }
 }

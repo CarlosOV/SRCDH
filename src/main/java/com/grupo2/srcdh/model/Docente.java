@@ -27,14 +27,14 @@ import javax.persistence.Table;
 @Table(name = "docente")
 public class Docente implements Serializable {
 
-    @OneToOne
-    @JoinColumn(name = "frn_usuario_id")
-    private Usuario usuario;
-
     @Id
     @GeneratedValue
     @Column(name = "idDocente")
     private long id;
+    
+    @OneToOne
+    @JoinColumn(name = "frn_usuario_id")
+    private Usuario usuario;
 
     @Column(name = "nombre")
     private String nombre;
@@ -45,6 +45,9 @@ public class Docente implements Serializable {
     @Column(name = "dni")
     private String dni;
 
+    @Column(name = "horarioSeleccionado")
+    private boolean horarioSeleccionado;
+    
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     private Categoria categoria;
@@ -86,6 +89,15 @@ public class Docente implements Serializable {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.horarioSeleccionado = false;
+    }
+
+    public boolean isHorarioSeleccionado() {
+        return horarioSeleccionado;
+    }
+
+    public void setHorarioSeleccionado(boolean horarioSeleccionado) {
+        this.horarioSeleccionado = horarioSeleccionado;
     }
 
     public Usuario getUsuario() {

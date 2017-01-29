@@ -61,7 +61,12 @@ public class UsuarioController {
                 salida += ",\"nombre\":\""+ docente.getNombre() +"\""
                     + ",\"apellido\":\""+ docente.getApellido() +"\""
                     + ",\"dni\":\""+ docente.getDni() +"\""
-                    + ",\"categoria\":\""+ docente.getCategoria().getNombre() +"\"";
+                    + ",\"horarioSeleccionado\":\""+ docente.isHorarioSeleccionado() +"\""
+                    + ",\"categoria\":{"
+                        + "\"id\":\""+ docente.getCategoria().getId() +"\""
+                        + ",\"nombre\":\""+ docente.getCategoria().getNombre()+"\""
+                        + ",\"horas\":\""+ docente.getCategoria().getHoras()+"\""
+                        + "}";
             }
                             
                     salida+= "}";

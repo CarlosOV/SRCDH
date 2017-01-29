@@ -28,6 +28,17 @@ public class Categoria implements Serializable {
     @Column(name="nombre")
     private String nombre;
 
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
+    
+    @Column(name="horas")
+    private int horas;
+
     @OneToMany(mappedBy = "categoria")
     private List<Docente> docentes;
 

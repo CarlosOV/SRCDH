@@ -23,7 +23,7 @@ public class CursoController {
 
     public CursoController(final CursoService cursoService, final EscuelaService escuelService) {
         get("/api/cursos", (req, res) -> {
-            System.out.println("/api/cursos");
+
             return cursoService.getAllCurso();
         }, json());
         
@@ -42,7 +42,7 @@ public class CursoController {
         get("/api/escuelas", (req, res) -> {
             EscuelaAcademicaDAOImpl escuelaDAO = new EscuelaAcademicaDAOImpl();
             List<EscuelaAcademica> escuelas = escuelService.getAll();
-            System.out.println("escuelas: "+escuelas);
+
             String salida = "{\"status\":\"200\", \"data\":[";
             List<Curso> cursos = null;
             EscuelaAcademica escuelaAux = null;
@@ -51,9 +51,9 @@ public class CursoController {
                 if(!escuelas.get(0).equals(escuela))salida+=",";
                 escuelaAux =  escuelaDAO.Buscar(escuela.getId());
                         
-                System.out.println("for");
+
                 cursos = escuelaAux.getCurso();
-                System.out.println("cursos: "+cursos);
+
                 salida += "{"
                         + "\"id\":\""+ escuela.getId() +"\""
                         + ",\"nombre\":\""+ escuela.getNombre() +"\"" 
@@ -72,7 +72,7 @@ public class CursoController {
             }
             
             salida += "]}";
-            System.out.println("salida: "+salida);
+
             halt(200, salida);
             return null;
         });

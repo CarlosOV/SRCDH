@@ -28,7 +28,7 @@ public class CursoService {
             salida += "{\"id\":\""+ curso.getId() +"\""
                     + ",\"nombre\":\""+ curso.getNombre() +"\""
 //                    + ",\"dcacurso\":\""+ curso.getdCaCurso() +"\""
-                    + ",\"escuelaacademica\":\""+ curso.getEscuelaAcademica() +"\"}";
+                    + ",\"escuelaacademica\":\""+ curso.getEscuelaAcademica().getNombre() +"\"}";
             if(x<cursos.size()-1)salida  += ",";
           }
         
@@ -44,7 +44,7 @@ public class CursoService {
         String salida = "{\"status\":\"200\",\"message\":\"Curso obtenido\","
                 + "\"id\":\""+ curso.getId() +"\""
                 + ",\"nombre\":\""+ curso.getNombre() +"\""
-                + ",\"escuelaAcademica\":\""+ curso.getEscuelaAcademica() +"\"";
+                + ",\"escuelaAcademica\":\""+ curso.getEscuelaAcademica().getNombre() +"\"";
 
         salida += "}";
         halt(200, salida);

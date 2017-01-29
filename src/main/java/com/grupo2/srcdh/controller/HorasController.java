@@ -5,6 +5,7 @@
  */
 package com.grupo2.srcdh.controller;
 
+import com.grupo2.srcdh.dao.Impl.DisponibilidadHorariaDAOImpl;
 import com.grupo2.srcdh.model.DisponibilidadHoraria;
 import com.grupo2.srcdh.model.Token;
 import com.grupo2.srcdh.model.Usuario;
@@ -20,6 +21,8 @@ import static spark.Spark.halt;
  * @author carlos
  */
 public class HorasController {
+    
+    private DisponibilidadHorariaDAOImpl disponibilidadHorariaDAO = new DisponibilidadHorariaDAOImpl();
 
     public HorasController(final HorasService horasService, final TokenService tokenService) {
         get("/api/horas", (req, res) -> {
@@ -34,7 +37,7 @@ public class HorasController {
             
             String salida = "{\"status\":\"200\",\"data\":[";
             for(int i = 0 ; i < horarios.size() ; i++){
-                horario = horarios.get(i);
+                horario = disponibilidadHorariaDAO.Buscar(horarios.get(i).getId());
                 salida += "{\"id\":\""+ horario.getId() +"\","
                         + "\"inicioHora\":\""+ horario.getInicioHora() +"\","
                         + "\"finHora\":\""+ horario.getFinHora() +"\","
