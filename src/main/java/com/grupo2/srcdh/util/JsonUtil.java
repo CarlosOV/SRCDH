@@ -6,6 +6,7 @@
 package com.grupo2.srcdh.util;
 
 import com.google.gson.Gson;
+import java.util.List;
 import java.util.Map;
 import spark.ResponseTransformer;
 
@@ -26,5 +27,9 @@ public class JsonUtil {
   
     public static Map<String, String> parse(String object) {
       return new Gson().fromJson(object, Map.class);
+    }
+    
+    public static List<String> parseList(String object){
+      return new Gson().fromJson(object, List.class); 
     }
 }

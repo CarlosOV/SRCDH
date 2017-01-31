@@ -6,15 +6,20 @@
 package com.grupo2.srcdh.controller;
 
 import com.grupo2.srcdh.dao.Impl.DisponibilidadHorariaDAOImpl;
+import com.grupo2.srcdh.dao.Impl.DocenteDAOImpl;
 import com.grupo2.srcdh.model.DisponibilidadHoraria;
+import com.grupo2.srcdh.model.Docente;
 import com.grupo2.srcdh.model.Token;
 import com.grupo2.srcdh.model.Usuario;
 import com.grupo2.srcdh.service.HorasService;
 import com.grupo2.srcdh.service.TokenService;
+import com.grupo2.srcdh.util.JsonUtil;
 import static com.grupo2.srcdh.util.JsonUtil.json;
 import java.util.List;
+import java.util.Map;
 import static spark.Spark.get;
 import static spark.Spark.halt;
+import static spark.Spark.post;
 
 /**
  *
@@ -47,6 +52,39 @@ public class HorasController {
             salida +="]}";
             
             halt(200, salida);
+            return null;
+        }, json());
+        
+        post("/api/horas", (req, res) -> {
+            Token token = tokenService.getByToken(req.headers("token"));
+            Usuario user = token.getUsuario();
+            Docente docente = user.getDocente();
+            boolean isHoursSelect = docente.isHorarioSeleccionado();
+            try{
+                List<DisponibilidadHoraria> dispo = null;
+                List<String> arrString = JsonUtil.parseList(req.body());
+                Map<String, String> map = null;
+
+
+                for (String string : arrString) {
+                    map = JsonUtil.parse(req.body());
+                    dispo.add(new DisponibilidadHoraria(map.get("dia"), map.get("hora")));
+                }
+
+                docente.setDisponibilidadHorarias(dispo);
+                DocenteDAOImpl docenteDAO = new DocenteDAOImpl();
+                docenteDAO.update(docente);
+            }
+            catch(Exception e){
+                System.out.println("Error: "+e);
+            }
+            if(isHoursSelect){
+                halt(403, "{\"status\":\"403\",\"message\":\"Forbidden\"}");
+            }
+            else{
+//                System.out.println("map: "+map);
+            }
+            System.out.println("isHoursSelect: "+isHoursSelect);
             return null;
         }, json());
     }

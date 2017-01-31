@@ -49,9 +49,12 @@ public class GenericDAOImpl<Entity, K extends Serializable> implements GenericDA
  @Override
  public void Actualizar(Entity t) throws UnableToSaveException {
   try {
+   System.out.println("antes update");
    getHibernateTemplate().update(t);
+   System.out.println("después update");
     session.getTransaction().commit();
    } catch (HibernateException e) {
+       System.out.println("e: "+ e);
     throw new UnableToSaveException(e);
   }
  }

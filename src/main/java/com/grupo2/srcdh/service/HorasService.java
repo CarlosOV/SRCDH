@@ -27,4 +27,7 @@ public class HorasService {
 
         return docenteaux.getDisponibilidadHorarias();
     }
+    public List<DisponibilidadHoraria> setHoras(Docente docente){
+        return null;
+    }
 }

@@ -13,5 +13,5 @@ import com.grupo2.srcdh.model.Docente;
  * @author carlos
  */
 public interface IDocenteDAO extends GenericDAO<Docente, Long>  {
-
+    public void update(Docente docente);
 }

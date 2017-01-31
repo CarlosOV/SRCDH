@@ -31,7 +31,7 @@ public class App {
 //        cursoDAO.Guardar(new Curso("Curso C"));
                 
         new InterceptorController();
-        new UsuarioController(new UsuarioService(), new TokenService());
+        new UsuarioController(new UsuarioService(), new TokenService(), new DocenteService());
         new CursoController(new CursoService(), new EscuelaService());
         new HorasController(new HorasService(), new TokenService());
     }

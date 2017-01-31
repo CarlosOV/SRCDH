@@ -46,6 +46,11 @@ public class DisponibilidadHoraria implements Serializable {
         this.finHora = finHora;
     }
 
+    public DisponibilidadHoraria(String dia, String inicioHora) {
+        this.dia = dia;
+        this.inicioHora = inicioHora;
+    }
+
     public DisponibilidadHoraria() {
     }
     

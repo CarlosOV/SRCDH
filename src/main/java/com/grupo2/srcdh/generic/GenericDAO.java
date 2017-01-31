@@ -16,7 +16,7 @@ import java.util.List;
 public interface GenericDAO<Entity, PK extends Serializable> {
     Long Guardar(Entity t) throws UnableToSaveException;
     void Actualizar(Entity t) throws UnableToSaveException;
-    Entity Buscar(PK id);
-    void Eliminar(Entity t);
+    Entity Buscar(PK id) throws UnableToSaveException ;
+    void Eliminar(Entity t) throws UnableToSaveException;
     List<Entity> Listar();
 }
