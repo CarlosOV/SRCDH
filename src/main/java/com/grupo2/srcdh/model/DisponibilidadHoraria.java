@@ -30,25 +30,22 @@ public class DisponibilidadHoraria implements Serializable {
     @Column(name="dia")
     private String dia;
     
-    @Column(name="inicioHora")
-    private String inicioHora;
-    
-    @Column(name="finHora")
-    private String finHora;
+    @Column(name="hora")
+    private String hora;
 
     @ManyToOne
     @JoinColumn(name="idDocente")
     private Docente docente;
-    
-    public DisponibilidadHoraria(String dia, String inicioHora, String finHora) {
+
+    public DisponibilidadHoraria(String dia, String hora) {
         this.dia = dia;
-        this.inicioHora = inicioHora;
-        this.finHora = finHora;
+        this.hora = hora;
     }
 
-    public DisponibilidadHoraria(String dia, String inicioHora) {
+    public DisponibilidadHoraria(String dia, String hora, Docente docente) {
         this.dia = dia;
-        this.inicioHora = inicioHora;
+        this.hora = hora;
+        this.docente = docente;
     }
 
     public DisponibilidadHoraria() {
@@ -78,20 +75,12 @@ public class DisponibilidadHoraria implements Serializable {
         this.dia = dia;
     }
 
-    public String getInicioHora() {
-        return inicioHora;
+    public String getHora() {
+        return hora;
     }
 
-    public void setInicioHora(String inicioHora) {
-        this.inicioHora = inicioHora;
-    }
-
-    public String getFinHora() {
-        return finHora;
-    }
-
-    public void setFinHora(String finHora) {
-        this.finHora = finHora;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
 }

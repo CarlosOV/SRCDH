@@ -5,7 +5,9 @@
  */
 package com.grupo2.srcdh.service;
 
+import com.grupo2.srcdh.dao.Impl.DisponibilidadHorariaDAOImpl;
 import com.grupo2.srcdh.dao.Impl.DocenteDAOImpl;
+import com.grupo2.srcdh.exception.UnableToSaveException;
 import com.grupo2.srcdh.model.DisponibilidadHoraria;
 import com.grupo2.srcdh.model.Docente;
 import com.grupo2.srcdh.model.Usuario;
@@ -18,6 +20,7 @@ import java.util.List;
 public class HorasService {
     
     public DocenteDAOImpl docenteDAO = new DocenteDAOImpl();
+    public DisponibilidadHorariaDAOImpl disDAO = new DisponibilidadHorariaDAOImpl();
     
     public List<DisponibilidadHoraria> getHoras(Usuario user){
         
@@ -29,5 +32,11 @@ public class HorasService {
     }
     public List<DisponibilidadHoraria> setHoras(Docente docente){
         return null;
+    }
+    
+    public void createListHoras(List<DisponibilidadHoraria> dispos) throws UnableToSaveException{
+        for (DisponibilidadHoraria dispo : dispos) {
+            disDAO.Guardar(dispo);
+        }
     }
 }

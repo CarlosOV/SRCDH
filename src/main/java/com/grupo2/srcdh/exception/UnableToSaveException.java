@@ -6,6 +6,7 @@
 package com.grupo2.srcdh.exception;
 
 import org.hibernate.HibernateException;
+import static spark.Spark.halt;
 
 /**
  *
@@ -28,6 +29,7 @@ public class UnableToSaveException extends Exception {
      */
     public UnableToSaveException(String msg) {
         super(msg);
+       
     }
 
     public UnableToSaveException(HibernateException e) {

@@ -44,9 +44,6 @@ public class Docente implements Serializable {
 
     @Column(name = "dni")
     private String dni;
-
-    @Column(name = "horarioSeleccionado")
-    private boolean horarioSeleccionado;
     
     @ManyToOne
     @JoinColumn(name = "idCategoria")
@@ -89,15 +86,6 @@ public class Docente implements Serializable {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.horarioSeleccionado = false;
-    }
-
-    public boolean isHorarioSeleccionado() {
-        return horarioSeleccionado;
-    }
-
-    public void setHorarioSeleccionado(boolean horarioSeleccionado) {
-        this.horarioSeleccionado = horarioSeleccionado;
     }
 
     public Usuario getUsuario() {

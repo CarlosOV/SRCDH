@@ -31,16 +31,22 @@ public class UsuarioController {
     
         post("/api/login", (req, res) -> usuarioService.login(req, res), json());
         
-        post("/api/register", (req, res) -> {
-            Map<String, String> map = JsonUtil.parse(req.body());
-            String usuario = map.get("user");
-            String pass = map.get("pass");
-            Usuario us = usuarioService.createUser(usuario, pass);
-            Gson gson = new Gson();
-            String salida = "{\"usuario\":\""+us.getEmail()+"\"}";
-            halt(200, salida);
-            return salida;
+        get("/api/login", (req, res) -> {
+            halt(403, "{\"status\":\"403\",\"message\":\"Forbidden\"}");
+            return null;
         }, json());
+        
+//DEPRECATED: El registro de usuario ya no estará disponible       
+//        post("/api/register", (req, res) -> {
+//            Map<String, String> map = JsonUtil.parse(req.body());
+//            String usuario = map.get("user");
+//            String pass = map.get("pass");
+//            Usuario us = usuarioService.createUser(usuario, pass);
+//            Gson gson = new Gson();
+//            String salida = "{\"usuario\":\""+us.getEmail()+"\"}";
+//            halt(200, salida);
+//            return salida;
+//        }, json());
         
         post("/api/logout", (req, res) -> {
             Map<String, String> map = JsonUtil.parse(req.body());
@@ -63,7 +69,6 @@ public class UsuarioController {
                 salida += ",\"nombre\":\""+ docente.getNombre() +"\""
                     + ",\"apellido\":\""+ docente.getApellido() +"\""
                     + ",\"dni\":\""+ docente.getDni() +"\""
-                    + ",\"horarioSeleccionado\":\""+ docente.isHorarioSeleccionado() +"\""
                     + ",\"categoria\":{"
                         + "\"id\":\""+ docente.getCategoria().getId() +"\""
                         + ",\"nombre\":\""+ docente.getCategoria().getNombre()+"\""
@@ -77,55 +82,55 @@ public class UsuarioController {
             halt(200, salida);
             return null;
         }, json());
-       
-        put("/api/user", (req, res) -> {
- 
-            String token = req.headers("token");
-            Token tokenObj = tokenService.getByToken(token); 
-            Usuario user = usuarioService.getUser(tokenObj.getUsuario().getId());
-            System.out.println("user: "+user);
-            String nombre = null;
-            String apellido = null;
-            String dni = null;
-            try{
-                Map<String, String> map = JsonUtil.parse(req.body());
-                System.out.println("map: "+map);
-                nombre = map.get("nombre");
-                apellido = map.get("apellido");
-                dni = map.get("dni");
-                System.out.println("query");
-            }catch(Exception e){
-                halt(200, "{\"status\":\"400\", \"message\":\"Bad Request\"}");
-            }
-            
-            Docente docenteAux = user.getDocente();
-            Docente docente = null;
-            System.out.println("docente: "+docenteAux);
-            
-            docente = docenteService.updateDocente(docenteAux.getId(), nombre, apellido, dni);
-            System.out.println("Docente 2");
-            String salida = "{\"status\":\"200\""
-                    + ",\"email\":\""+ user.getEmail() +"\"";
-            if(docente != null){
-                salida += ",\"nombre\":\""+ docente.getNombre() +"\""
-                    + ",\"apellido\":\""+ docente.getApellido() +"\""
-                    + ",\"dni\":\""+ docente.getDni() +"\""
-                    + ",\"horarioSeleccionado\":\""+ docente.isHorarioSeleccionado() +"\""
-                    + ",\"categoria\":{"
-                        + "\"id\":\""+ docente.getCategoria().getId() +"\""
-                        + ",\"nombre\":\""+ docente.getCategoria().getNombre()+"\""
-                        + ",\"horas\":\""+ docente.getCategoria().getHoras()+"\""
-                        + "}";
-            }
-                            
-                    salida+= "}";
-                  
-            System.out.println("salida: "+ salida);
-            halt(200, salida);
-            
-            return null;
-            
-        }, json());
+   
+//DEPRECATED: La actualización de usuario ya no estará disponible       
+//        put("/api/user", (req, res) -> {
+// 
+//            String token = req.headers("token");
+//            Token tokenObj = tokenService.getByToken(token); 
+//            Usuario user = usuarioService.getUser(tokenObj.getUsuario().getId());
+//            System.out.println("user: "+user);
+//            String nombre = null;
+//            String apellido = null;
+//            String dni = null;
+//            try{
+//                Map<String, String> map = JsonUtil.parse(req.body());
+//                System.out.println("map: "+map);
+//                nombre = map.get("nombre");
+//                apellido = map.get("apellido");
+//                dni = map.get("dni");
+//                System.out.println("query");
+//            }catch(Exception e){
+//                halt(200, "{\"status\":\"400\", \"message\":\"Bad Request\"}");
+//            }
+//            
+//            Docente docenteAux = user.getDocente();
+//            Docente docente = null;
+//            System.out.println("docente: "+docenteAux);
+//            
+//            docente = docenteService.updateDocente(docenteAux.getId(), nombre, apellido, dni);
+//            System.out.println("Docente 2");
+//            String salida = "{\"status\":\"200\""
+//                    + ",\"email\":\""+ user.getEmail() +"\"";
+//            if(docente != null){
+//                salida += ",\"nombre\":\""+ docente.getNombre() +"\""
+//                    + ",\"apellido\":\""+ docente.getApellido() +"\""
+//                    + ",\"dni\":\""+ docente.getDni() +"\""
+//                    + ",\"categoria\":{"
+//                        + "\"id\":\""+ docente.getCategoria().getId() +"\""
+//                        + ",\"nombre\":\""+ docente.getCategoria().getNombre()+"\""
+//                        + ",\"horas\":\""+ docente.getCategoria().getHoras()+"\""
+//                        + "}";
+//            }
+//                            
+//                    salida+= "}";
+//                  
+//            System.out.println("salida: "+ salida);
+//            halt(200, salida);
+//            
+//            return null;
+//            
+//        }, json());
         
     }
     

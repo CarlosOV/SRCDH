@@ -33,6 +33,6 @@ public class App {
         new InterceptorController();
         new UsuarioController(new UsuarioService(), new TokenService(), new DocenteService());
         new CursoController(new CursoService(), new EscuelaService());
-        new HorasController(new HorasService(), new TokenService());
+        new HorasController(new HorasService(), new TokenService(), new UsuarioService());
     }
 }
